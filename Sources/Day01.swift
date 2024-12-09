@@ -20,18 +20,22 @@ struct Day01: AdventDay {
    */
   func part1() -> Any {
     return zip(
-      entities.compactMap({ $0.first }).sorted(),
-      entities.compactMap({ $0.last }).sorted()
+      entities.compactMap(\.first).sorted(),
+      entities.compactMap(\.last).sorted()
     )
-    .reduce(0) { partialResult, pair in
-      abs(pair.0 - pair.1) + partialResult
-    }
+    .map({ abs($0.0 - $0.1) })
+    .reduce(0, +)
   }
   
   // Replace this with your solution for the second part of the day's challenge.
   func part2() -> Any {
-    entities.compactMap(\.first).reduce(0) { partialResult, num in
-      partialResult + num * entities.map(\.last).count(where: { $0 == num })
-    }
+    zip(
+      entities.compactMap(\.first),
+      entities.compactMap(\.first).map({ num in
+        entities.count(where: { $0.last == num })
+      })
+    )
+    .map { $0.0 * $0.1 }
+    .reduce(0, +)
   }
 }

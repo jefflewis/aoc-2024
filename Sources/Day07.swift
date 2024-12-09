@@ -16,7 +16,7 @@ struct Day07: AdventDay {
 
   func part1() -> Any {
     let equations = try! InputParser().parse(data)
-    
+
     return equations
       .filter({ $0.isValid(for: [(+), (*)]) })
       .map(\.testValue)
@@ -25,21 +25,21 @@ struct Day07: AdventDay {
 
   func part2() -> Any {
     let equations = try! InputParser().parse(data)
-    
+
     return equations
       .filter({ $0.isValid(for: [(+), (*), (||)]) })
       .map(\.testValue)
       .reduce(0, +)
   }
-  
+
   struct Equation {
     var testValue: Int
     var input: [Int]
-    
+
     func isValid(for operators: [(Int, Int) -> Int]) -> Bool {
       input
         .dropFirst()
-        .reduce([input.first ?? 0]) { partialResult, next in
+        .reduce([input.first!]) { partialResult, next in
           partialResult
             .filter { $0 <= testValue }
             .flatMap { value in
@@ -49,7 +49,7 @@ struct Day07: AdventDay {
         .contains(testValue)
     }
   }
-  
+
   struct InputParser: Parser {
     var body: some Parser<Substring, [Equation]> {
       Many {
@@ -57,13 +57,13 @@ struct Day07: AdventDay {
       } separator: {
         Whitespace(1, .vertical)
       }
-      
+
       Skip {
         Rest()
       }
     }
   }
-  
+
   struct EquationParser: Parser {
     var body: some Parser<Substring, Equation> {
       Parse(Equation.init) {
