@@ -67,8 +67,8 @@ struct Day08: AdventDay {
         otherTowers.remove(tower)
         for otherTower in otherTowers {
           // previous
-          var next = otherTower.x >= tower.x && otherTower.y >= tower.y ? otherTower : tower
-          var current = next == tower ? otherTower : tower
+          let next = otherTower.x >= tower.x && otherTower.y >= tower.y ? otherTower : tower
+          let current = next == tower ? otherTower : tower
           for antinode in [
             next.previous(from: current),
             next.next(from: current)
