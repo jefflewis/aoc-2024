@@ -126,7 +126,6 @@ struct Day09: AdventDay {
         blocks.insert(.free(remainingSpace), at: freeIndex + 1)
       }
     }
-
   }
 }
 
