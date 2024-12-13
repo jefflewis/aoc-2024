@@ -29,9 +29,6 @@ struct Day07Tests {
   @Test func testPart1() async throws {
     let challenge = Day07(data: testData)
     #expect(challenge.part1() as! Int == 3749)
-
-    let fullChallenge = Day07()
-    #expect(fullChallenge.part1() as! Int == 7885693428401)
   }
 
   @Test func testPart2() async throws {

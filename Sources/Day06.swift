@@ -54,7 +54,7 @@ struct Day06: AdventDay {
       try! move(player: &player, grid: grid)
     }
 
-    return player.uniquePositions.count
+    return player.uniquePositions.count + 1
   }
   
   func part2() -> Any {
