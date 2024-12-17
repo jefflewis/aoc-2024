@@ -6,6 +6,7 @@ let dependencies: [Target.Dependency] = [
   .product(name: "Collections", package: "swift-collections"),
   .product(name: "ArgumentParser", package: "swift-argument-parser"),
   .product(name: "Parsing", package: "swift-parsing"),
+  "SwiftCurses",
 ]
 
 let package = Package(
@@ -30,6 +31,7 @@ let package = Package(
     .package(
       url: "https://github.com/swiftlang/swift-syntax.git",
         .upToNextMajor(from: "600.0.1")),
+    .package(url: "https://github.com/jomy10/SwiftCurses.git", branch: "master"),
   ],
   targets: [
     .executableTarget(
