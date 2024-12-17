@@ -427,7 +427,7 @@ struct Day15: AdventDay {
       var moved: [Point:Character] = [:]
       let currentGrid = grid
       
-      if grid[box.y][box.x] == "." || move(
+      if move(
         box: box,
         with: next,
         pending: &pending,
