@@ -60,13 +60,11 @@ struct Day16: AdventDay {
       traverse(&currentPath)
       
       // traverse left path
-      var turnLeftPath = path
-      turnLeftPath.turn(.left)
+      var turnLeftPath = path.turning(.left)
       traverse(&turnLeftPath)
       
       // traverse right path
-      var turnRightPath = path
-      turnRightPath.turn(.right)
+      var turnRightPath = path.turning(.right)
       traverse(&turnRightPath)
     }
     
@@ -182,15 +180,18 @@ struct Day16: AdventDay {
       moves.append(point)
     }
     
-    mutating func turn(_ turn: Turn) {
-      turns.append(turn)
+    func turning(_ turn: Turn) -> Path {
+      var path = self
+      path.turns.append(turn)
 
-      direction = switch direction {
+      path.direction = switch direction {
       case .east: turn == .left ? .north : .south
       case .south: turn == .left ? .east : .west
       case .west: turn == .left ? .south : .north
       case .north: turn == .left ? .west : .east
       }
+      
+      return path
     }
     
     static func < (lhs: Path, rhs: Path) -> Bool {
