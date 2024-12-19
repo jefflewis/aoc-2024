@@ -140,15 +140,6 @@ struct Day16: AdventDay {
     case south = "v"
     case east = "<"
     case west = ">"
-    
-    var index: Int {
-      switch self {
-      case .north: 0
-      case .east: 1
-      case .south: 2
-      case .west: 3
-      }
-    }
   }
   
   enum Cell: Character, Hashable {
